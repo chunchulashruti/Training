@@ -1,4 +1,24 @@
 package com.training.assignment;
 
+/**
+ * Employee: The pojo which defines the properties and behavior of the employee.
+ */
 public class Employee {
+
+    private String name;
+    private int salary;
+    private int uniqueIdentifier;
+    private int age;
+
+    public Employee(String name, int salary, int uniqueIdentifier, int age) {
+        this.name = name;
+        this.salary = salary;
+        this.uniqueIdentifier = uniqueIdentifier;
+        this.age = age;
+    }
+
+    public void displayInformation() {
+        System.out.println(this.name + ", " + this.age + ", " + this.salary
+                + ", " + this.uniqueIdentifier);
+    }
 }
