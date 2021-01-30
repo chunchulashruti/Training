@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Platform {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<Employee> employees = new ArrayList();
-    private static int index = 0;
+    private static int identifier = 1;
+    private static final String ID_PREFIX = "AUTOMATE";
 
     public static void main(String[] args) {
 
@@ -23,19 +24,57 @@ public class Platform {
                 employees.add(employee);
                 break;
             case 2:
-                // TODO: Update employee flow
-                System.out.println("Sorry ! update Employee is not yet supported!");
+                System.out.println("Which employee needs to be Updated? Give me the ID:");
+                updateEmployee(scanner.next());
                 break;
             case 3:
-                System.out.println("Sorry ! Delete Employee is not yet supported!");
-                // TODO: Delete employee flow
+                System.out.println("Enter employee Id to delete!");
+                deleteEmployee(scanner.next());
                 break;
             case 4:
-                for (Employee e : employees) {
-                    e.displayInformation();
-                }
+                listEmployees();
                 break;
+        }
+    }
 
+    private static void updateEmployee(String employeeId) {
+        boolean isEmployeeFound = false;
+        for (int i = 0; i < employees.size(); i++) {
+            isEmployeeFound = employees.get(i).getUniqueIdentifier().equals(employeeId);
+            if (isEmployeeFound) {
+                processUpdate(employeeId, employees.get(i));
+                break;
+            }
+        }
+        if (!isEmployeeFound)
+            System.out.println("Employee is not found to update!");
+
+    }
+
+    private static void processUpdate(String employeeId, Employee employee) {
+        System.out.println("Enter the updated information for employee with id: " + employeeId);
+        final String name = takeName();
+        final int salary = takeSalary();
+        final int age = takeAge();
+        employee.update(name, salary, age);
+    }
+
+
+    private static void deleteEmployee(String employeeId) {
+        // loop through employees list until you find the employee id to be deleted.
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getUniqueIdentifier().equals(employeeId)) {
+                employees.remove(i);
+                System.out.println("Employee with id : " + employeeId + " is deleted");
+                break;
+            }
+        }
+
+    }
+
+    private static void listEmployees() {
+        for (Employee e : employees) {
+            e.displayInformation();
         }
     }
 
@@ -67,15 +106,12 @@ public class Platform {
         final int age = takeAge();
         Employee employee = createEmployeeObject(name, salary, age);
         employee.displayInformation();
-
         return employee;
     }
 
 
-    private static int identifier = 1;
-
     private static Employee createEmployeeObject(String name, int salary, int age) {
-        return new Employee(name, salary, identifier++, age);
+        return new Employee(name, salary, ID_PREFIX + (identifier++), age);
     }
 
     private static int takeAge() {
