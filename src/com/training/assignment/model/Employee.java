@@ -1,10 +1,9 @@
-package com.training.assignment;
+package com.training.assignment.model;
 
 /**
  * Employee: The pojo which defines the properties and behavior of the employee.
  */
 public class Employee {
-
     private String name;
     private int salary;
     private String uniqueIdentifier;
