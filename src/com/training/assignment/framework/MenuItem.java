@@ -17,4 +17,12 @@ public class MenuItem {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "MenuItem{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

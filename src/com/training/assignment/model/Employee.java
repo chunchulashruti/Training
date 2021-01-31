@@ -6,10 +6,10 @@ package com.training.assignment.model;
 public class Employee {
     private String name;
     private int salary;
-    private String uniqueIdentifier;
+    private int uniqueIdentifier;
     private int age;
 
-    public Employee(String name, int salary, String uniqueIdentifier, int age) {
+    public Employee(String name, int salary, int uniqueIdentifier, int age) {
         this.name = name;
         this.salary = salary;
         this.uniqueIdentifier = uniqueIdentifier;
@@ -21,7 +21,7 @@ public class Employee {
                 + ", " + this.uniqueIdentifier);
     }
 
-    public String getUniqueIdentifier() {
+    public int getUniqueIdentifier() {
         return uniqueIdentifier;
     }
 

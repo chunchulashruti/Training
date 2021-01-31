@@ -35,4 +35,12 @@ public class Menu {
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "label='" + label + '\'' +
+                ", menuItems=" + menuItems +
+                '}';
+    }
 }
